@@ -1,0 +1,157 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.vacationrentals</groupId>
+	<artifactId>vacationrentals</artifactId>
+	<packaging>war</packaging>
+	<version>1.0-SNAPSHOT</version>
+
+	<properties>
+		<scalatra.version>2.5.1</scalatra.version>
+		<json4s-jackson.version>3.5.3</json4s-jackson.version>
+	</properties>
+
+	<build>
+		<finalName>scalatra-maven-prototype</finalName>
+		<sourceDirectory>src/main/scala</sourceDirectory>
+		<testSourceDirectory>src/test/scala</testSourceDirectory>
+		<plugins>
+			<plugin>
+				<groupId>net.alchim31.maven</groupId>
+				<artifactId>scala-maven-plugin</artifactId>
+				<version>3.3.1</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>compile</goal>
+							<goal>testCompile</goal>
+						</goals>
+						<configuration>
+							<args>
+								<arg>-dependencyfile</arg>
+								<arg>${project.build.directory}/.scala_dependencies</arg>
+							</args>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.6</version>
+				<configuration>
+					<useFile>false</useFile>
+					<disableXmlReport>true</disableXmlReport>
+					<includes>
+						<include>**/*Test.*</include>
+						<include>**/*Suite.*</include>
+					</includes>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>jetty-maven-plugin</artifactId>
+				<version>9.4.7.v20170914</version>
+			</plugin>
+		</plugins>
+	</build>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.scalatra</groupId>
+			<artifactId>scalatra_2.12</artifactId>
+			<version>${scalatra.version}</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.scalatra</groupId>
+			<artifactId>scalatra-json_2.12</artifactId>
+			<version>${scalatra.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.json4s</groupId>
+			<artifactId>json4s-jackson_2.12</artifactId>
+			<version>${json4s-jackson.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.scalatra</groupId>
+			<artifactId>scalatra-swagger_2.12</artifactId>
+			<version>${scalatra.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.scalatra</groupId>
+			<artifactId>scalatra-scalatest_2.12</artifactId>
+			<version>${scalatra.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.typesafe.akka</groupId>
+			<artifactId>akka-actor_2.12</artifactId>
+			<version>${scalatra.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.jetty.orbit</groupId>
+			<artifactId>javax.servlet</artifactId>
+			<version>3.0.0.v201112011016</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.jetty</groupId>
+			<artifactId>jetty-webapp</artifactId>
+			<version>9.4.7.v20170914</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>1.0.13</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.scala-lang</groupId>
+			<artifactId>scala-library</artifactId>
+			<version>2.12.3</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.json4s</groupId>
+			<artifactId>json4s-native_2.12</artifactId>
+			<version>${json4s-jackson.version}</version>
+		</dependency>
+	</dependencies>
+
+	<repositories>
+		<repository>
+			<id>SonatypeNexusSnapshots</id>
+			<name>Sonatype Nexus Snapshots</name>
+			<url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+		</repository>
+		<repository>
+			<id>FuseSourceSnapshotRepository</id>
+			<name>FuseSource Snapshot Repository</name>
+			<url>http://repo.fusesource.com/nexus/content/repositories/snapshots/</url>
+		</repository>
+		<repository>
+			<id>ScalaToolsMaven2Repository</id>
+			<name>Scala-Tools Maven2 Repository</name>
+			<url>http://scala-tools.org/repo-releases/</url>
+		</repository>
+		<repository>
+			<id>scala-tools.org</id>
+			<name>Scala-Tools Maven2 Repository</name>
+			<url>http://scala-tools.org/repo-releases</url>
+		</repository>
+	</repositories>
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>scala-tools.org</id>
+			<name>Scala-Tools Maven2 Repository</name>
+			<url>http://scala-tools.org/repo-releases</url>
+		</pluginRepository>
+	</pluginRepositories>
+
+</project>
